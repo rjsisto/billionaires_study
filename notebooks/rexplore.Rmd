@@ -11,6 +11,7 @@ library(plotly)
 #setwd("/home/project/src/data/raw")
 setwd("/home/risto/gits/billionaires/src/data/raw")
 data = read.csv('Billionaires_Statistics_Dataset.csv', na.strings=c("","NA"))
+world.data = read.csv("world-data-2023.csv")
 ```
 
 ## Preprocessing
@@ -24,6 +25,7 @@ data$continent = countrycode(sourcevar=data[, "country"], origin = "country.name
 ```
 
 ## Analysis
+### Billionaire Analysis
 ```{r analysis}
 #billionaires by country
 sort(table(data$country), decreasing = T)
@@ -113,6 +115,45 @@ boxplot(data$selfMade, log10(data$finalWorth))
 names(data)
 ```
 
+
+
+### Country Analysis
+```{r}
+#looking at a histogram of all the tax rates
+tax.rate = world.data$Total.tax.rate
+tax.rate = as.numeric(gsub("%", "", tax.rate))
+hist(tax.rate)
+
+#looking at who has >100% tax rates
+world.data[world.data$Total.tax.rate == "219.60%",]
+world.data[world.data$Total.tax.rate == "106.30%",]
+
+#removing those two tax rates and looking at the resulting histogram
+hist(tax.rate[tax.rate < 100])
+
+```
+- comoros has a 219.60% tax rate, that seems incorrect. 
+- argentina has a 106.30% tax rate, that also seems incorrect. 
+- tax rate without the two large outliers is a pretty normal bell cuve 
+
+```{r}
+#looking at a pairs plot of the data 
+pairs() # how to create a pairs plot
+
+#TODO need to convert character values into numeric
+world.pairs = world.data %>% select(Density..P.Km2., Agricultural.Land...., Land.Area.Km2., Armed.Forces.size, Birth.Rate, Co2.Emissions, CPI, CPI.Change...., Fertility.Rate, Forested.Area...., Gasoline.Price,  GDP, Gross.primary.education.enrollment...., Gross.tertiary.education.enrollment...., Infant.mortality, Life.expectancy, Maternal.mortality.ratio, Minimum.wage, Out.of.pocket.health.expenditure, Physicians.per.thousand, Population, Population..Labor.force.participation...., Tax.revenue...., Total.tax.rate, Unemployment.rate, Urban_population)
+
+
+str(world.pairs)
+
+```
+
+
+```{r}
+#TODO split out all these analyses into different code chunks
+names(world.data)
+
+```
 
 ## Basic modeling
 ```{r}

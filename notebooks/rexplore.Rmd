@@ -1,0 +1,151 @@
+---
+title: "rexplore"
+output: html_notebook
+---
+
+```{r setup} 
+library(DT)
+library(tidyverse)
+library(countrycode)
+library(plotly)
+setwd("/home/project/src/data/raw")
+data = read.csv('Billionaires_Statistics_Dataset.csv', na.strings=c("","NA"))
+```
+
+## Preprocessing
+```{r}
+#maybe just drop all of the billionaires without countries
+
+#adding continent info to the dataset
+continents = data.frame(country = unique(data$country))
+data$continent = countrycode(sourcevar=data[, "country"], origin = "country.name", destination="continent")
+
+```
+
+## Analysis
+```{r analysis}
+#billionaires by country
+sort(table(data$country), decreasing = T)
+```
+- as expected, the us and china have the lions share of billionaires
+```{r}
+#by gender
+prop.table(table(data$gender))
+```
+- also as expected, almost 90% of billionaires are men 
+
+```{r}
+#by industry
+sort(table(data$industries), decreasing = T)
+```
+- nothing really interesting to note yet
+
+```{r}
+#by selfMade
+prop.table(table(data$selfMade))
+```
+- an almost 70/30 split here in favor of being 'self-made'
+
+```{r}
+#looking at the intersecton of selfMade and industry
+prop.table(table(data$selfMade, data$industries), margin=2)
+```
+- number of interesting things here:
+- automotive, construction, fashion, food and beverage, and service are all pretty evenly split
+- tech is a 93/7 split in favor of self-made, which makes a lot of sense
+- telecom is also very heavily split in favor of self-made (84/16)
+- all other ones are mostly a 70/30 split, with sports being a 64/36 split (which kina makes sense)
+
+
+```{r}
+#looking at billionaires by source
+sort(table(data$source), decreasing = T)
+```
+- most common one is real estate and investments
+- there is one 'used car' guy, which is really funny
+
+```{r}
+#looking at billionaires by country and industry
+by.country.industries = data %>% select(country, industries) %>% count(country, industries)
+
+#not sure there is enough billionaires per country to do much meaningful analysis on it 
+by.country.industries
+ 
+```
+
+```{r}
+#looking at billionaires by age
+summary(data$age)
+```
+- mean and median are both 65
+
+```{r}
+#looking at billionaires by age and industry
+#binning the ages by decade
+by.age.industry = data %>% select(industries, age) %>% count(age, industries)
+
+
+table(data$age, data$industries)
+
+```
+
+```{r}
+#looking at billionaires by continent
+table(data$continent)
+```
+- makes sense, proportionately more billionaires in americas and europe than in other continents
+
+```{r}
+#looking at number of billionaires by country population
+table(data$population_country)
+```
+
+```{r}
+#looking at billionaires and self made
+boxplot(data$selfMade, log10(data$finalWorth))
+
+
+```
+
+
+```{r}
+names(data)
+```
+
+
+## Basic modeling
+```{r}
+#creating a basic linear model to see if there are any countries that are over/under represented
+#TODO need to create a column that contains how many billionaires are from each country 
+#TODO will probably need to include all countries and set the ones that have no billionaires to 0
+
+
+
+pop = data %>% group_by(country) %>% mutate(num.bill=n())
+
+f = lm(num.bill~population_country, data=pop)
+
+c = chisq.test(table(pop$num.bill, pop$country))
+summary(c)
+c$residuals
+plot(c)
+
+library(corrplot)
+corrplot(c$stdres)
+```
+
+## Test
+```{r}
+#adding continents to the dataframe
+test = data.frame(country = unique(data$country))
+test$continent = countrycode(sourcevar=test[, "country"], origin = "country.name", destination="continent")
+
+
+```
+
+```{r}
+#looking at the WDI package to add more info about other countries
+library(WDI)
+
+WDI(country="CA", indicator="NY.GDP.PCAP.KD", start=1960, end=NULL, extra=FALSE, cache=NULL, latest=NULL, language="en" )
+```

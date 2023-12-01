@@ -1,0 +1,5 @@
+"NY.GDP.MKTP.CD", "NY.GDP.PCAP.CD", "SP.POP.TOTL", "SE.XPD.TOTL.GD.ZS", "SE.ENR.PRSC.FM.ZS", "SH.DYN.MORT", "SP.DYN.LE00.MA.IN", "SP.DYN.LE00.FE.IN", "SE.PRM.ENRR", "SE.SEC.ENRR", "SE.TER.ENRR", "NY.GDP.MKTP.KD.ZG", "NV.AGR.TOTL.ZS", "NV.IND.TOTL.ZS", "NV.SRV.TOTL.ZS", "NE.EXP.GNFS.ZS", "NE.IMP.GNFS.ZS", "SL.UEM.TOTL.ZS", "GC.TAX.TOTL.GD.ZS"
+
+
+gdp, gdp per capita, total population, government expenditure on education (% of gdp), School enrollment, primary and secondary (gross), gender parity index (GPI), Mortality rate, under-5 (per 1,000 live births), Life expectancy at birth, male (years), Life expectancy at birth, female (years), School enrollment, primary (% gross), School enrollment, secondary (% gross), School enrollment, tertiary (% gross), GDP growth (annual %), Agriculture, value added (% of GDP), Industry, value added (% of GDP), Services, value added (% of GDP), Exports of goods and services (% of GDP), Imports of goods and services (% of GDP), Unemployment, total (% of total labor force) (modeled ILO estimate), Tax Revenue (% Of GDP)
+

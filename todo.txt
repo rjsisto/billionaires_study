@@ -1,0 +1,15 @@
+#future analysis 
+- billionaires by age and industry
+- billionaires by age and country
+- billionaires by age and selfMade
+- billionaires by country and selfMade
+- billionaires and country population (do an analysis to see which countries have more billionaires than they should)
+
+#notes
+- may want to add a new column which dentotes which continent the country is on 
+
+#Goal:
+- see what factors most predict whether a certain country will have a billionaire or not
+- will want to create a new dataset with stats on all countries to properly compare 
+
+- use current usd to get the gdp

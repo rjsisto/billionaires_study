@@ -1,0 +1,8 @@
+FROM rocker/rstudio
+
+COPY /docker/R-requirements.txt /home/project/
+COPY /config/config.toml /home/project/
+COPY /docker/install_packages.r /home/project
+
+RUN apt update && apt upgrade -y
+RUN Rscript /home/project/install_packages.r

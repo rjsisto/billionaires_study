@@ -4,3 +4,4 @@ src/data/processed/*.csv
 src/models/*.joblib
 
 notebooks/.ipynb_checkpoints
+notebooks/*.html

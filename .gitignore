@@ -3,5 +3,5 @@ src/data/interim/*.csv
 src/data/processed/*.csv
 src/models/*.joblib
 
-notebooks/.ipynb_checkpoints
+.ipynb_checkpoints
 notebooks/*.html

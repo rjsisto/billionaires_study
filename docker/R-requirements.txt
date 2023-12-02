@@ -2,3 +2,4 @@ DT
 tidyverse
 countrycode
 plotly
+markdown

@@ -1,0 +1,15 @@
+---
+title: "Number of Billionaires Dataset Analysis"
+output: html_notebook
+---
+
+```{r setup}
+library(DT)
+library(tidyverse)
+
+data = read.csv('/home/project/src/data/interim/num_bill.csv')
+```  
+
+```{r}
+
+```

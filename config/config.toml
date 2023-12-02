@@ -1,0 +1,11 @@
+DATA_FOLDER = "/project/src/data/"
+MODEL_FOLDER = "/project/src/models/"
+
+[COUNTRY]
+
+DROP = ["Abbreviation", "Calling Code", "Capital/Major City", "Currency-Code", "Largest city", "Official language"]
+RENAME = {"Country"= "country", "Density\n(P/Km2)"= "density", "Agricultural Land( %)" = "agricultural_land_percent", 'Land Area(Km2)' = "land_area", 'Armed Forces size'= "armed_forces_size", 'Birth Rate'= "birth_rate", 'Co2-Emissions'= "co2-emissions", 'CPI'= "cpi", 'CPI Change (%)'= "cpi_change_percent", 'Fertility Rate'= "fertility_rate", 'Forested Area (%)'= "forested_area_percent", 'Gasoline Price'= "gas_price", 'GDP'= "gdp", 'Gross primary education enrollment (%)'= "gross_primary_education_enrollment_percent", 'Gross tertiary education enrollment (%)'= "gross_tertiary_education_enrollment_percent", 'Infant mortality'="infant_morality", 'Life expectancy'= "life_expectancy", 'Maternal mortality ratio'= "maternal_mortality_ratio", 'Minimum wage'= "minimum_wage", 'Out of pocket health expenditure'= "out_of_pocket_health_expenditure", 'Physicians per thousand'= "physicians_per_thousand", 'Population'= "population", 'Population= Labor force participation (%)'= "labor_force_participation_percent",'Tax revenue (%)'= "tax_revenue_percent_gdp", 'Total tax rate'= "total_tax_rate", 'Unemployment rate'= "unemployment_rate", 'Urban_population'= "urban_population", 'Latitude'= "latitute", 'Longitude'= "longitude"}
+
+[BILLIONAIRES]
+
+DROP =['cpi_country', 'cpi_change_country', 'gdp_country', 'gross_tertiary_education_enrollment', 'gross_primary_education_enrollment_country', 'life_expectancy_country', 'tax_revenue_country_country', 'total_tax_rate_country', 'population_country', 'latitude_country', 'longitude_country', "residenceStateRegion"]

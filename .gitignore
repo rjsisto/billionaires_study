@@ -5,3 +5,4 @@ src/models/*.joblib
 
 .ipynb_checkpoints
 notebooks/*.html
+.venv

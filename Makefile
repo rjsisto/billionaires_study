@@ -72,3 +72,13 @@ launch-rstudio: ##launches RStudio
 
 stop-rstudio: ##stops RStudio
 	@docker stop rstudio-billion
+
+##@ Local Python Environment
+create-env: ##creates the local python environment
+	@python3 -m venv .venv
+	@.venv/bin/python3 -m pip install --upgrade pip
+	@.venv/bin/python3 -m pip install -r docker/requirements.txt
+
+delete-env: ##deletes the current local python environment
+	@rm -r .venv
+
